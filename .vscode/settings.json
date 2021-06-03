@@ -1,0 +1,13 @@
+{
+//配置虚拟环境 
+"python.pythonPath": "venv\\Scripts\\python.exe",
+"python.venvPath": "",
+"python.analysis.extraPaths": [
+    "./inc",　　　　
+
+],
+"qtForPython.designer.path": "c:\\Users\\Administrator\\OneDrive\\0-GUI\\venv\\Lib\\site-packages\\qt5_applications\\Qt\\bin\\designer.exe",
+"python.autoComplete.extraPaths":[ " ./inc ",
+    "venv/Lib/site-packages"
+ ]
+}
