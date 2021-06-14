@@ -1,6 +1,4 @@
 from PyQt5.QtCore import  QThread,pyqtSignal
-import os
-import time
 import subprocess
 
 from loguru import logger

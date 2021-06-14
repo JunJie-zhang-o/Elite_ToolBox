@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QComboBox, QFormLayout, QHBoxLayout, QLabel, QLineEdit, QMessageBox, QProgressBar, QScrollArea, QPushButton, QVBoxLayout, QWidget
 import sys
 
@@ -164,7 +164,7 @@ class CommentWidget(QWidget):
         """异常信号
         """
         if exception_sign :
-            QMessageBox.warning(self,"异常","请检查用户名和密码是否正确")
+            QMessageBox.warning(self,"连接失败","请检查用户名和密码是否正确")
         
         
     @logger.catch()
@@ -193,7 +193,7 @@ class CommentWidget(QWidget):
         self.dict_line_edit_key[name] = text
         
     
-    @logger.catch()
+    @logger.catch
     def slot_btn_save(self,*args):
         """保存按钮的槽函数
         """
@@ -203,6 +203,7 @@ class CommentWidget(QWidget):
                                dict_line_edit_text[1024:1279]]
         self.download = Download(list_line_edit_text,self.xml_obj)
         self.download.pgbar_var.connect(self.slot_pgbar)
+        self.download.exception_sign.connect(self.slot_exception)
         self.download.start()
         
 

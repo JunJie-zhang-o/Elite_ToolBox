@@ -1,6 +1,7 @@
 # coding:utf-8
 
 from ctypes import resize
+from os import times
 from PyQt5.QtCore import Qt, QSize, pyqtSignal
 from PyQt5.QtGui import QCursor, QIcon, QPixmap, QResizeEvent
 from PyQt5.QtWidgets import QFrame, QLabel, QPushButton, QToolButton, QWidget
@@ -11,6 +12,7 @@ from loguru import logger
 
 from .title_bar_buttons import MaximizeButton, ThreeStateToolButton
 from inc.UI_connect_info import connect_info
+import time
 
 
 class TitleBar(QWidget):
@@ -62,6 +64,7 @@ class TitleBar(QWidget):
         # 将按钮的点击信号连接到槽函数
         self.minBt.clicked.connect(self.window().showMinimized)
         self.maxBt.clicked.connect(self.__showRestoreWindow)
+        self.closeBt.clicked.connect(self.slot_close_subprocess_thread)
         self.closeBt.clicked.connect(self.window().close)
 
 
@@ -208,3 +211,8 @@ class TitleBar(QWidget):
         self.connect_info_widget.show()
         self.connect_info_widget.comboBox_init(1)
         
+        
+    def slot_close_subprocess_thread(self):
+        """窗口关闭，停止ping线程
+        """
+        self.connect_info_widget.ping.proc1.kill()

@@ -14,6 +14,7 @@ class Comment_xml_parse():
     """
     def __init__(self):
 
+        self.__element__=["VarB","VarI","VarD","VarP","VarV"]
         # 创建原始的注释列表集合
         self._comment_B, self._comment_I, self._comment_D, self._comment_P, self._comment_V = [None]*256, [None]*256, [None]*256, [None]*256, [None]*256
 
@@ -31,7 +32,7 @@ class Comment_xml_parse():
         self.dom = xml.dom.minidom.parse(self.path)
         # 获取xml根元素
         self.root = self.dom.documentElement
-        self.__element__=["VarB","VarI","VarD","VarP","VarV"]
+        
         # 获取子元素列表
         self.ele_vars_b = self.root.getElementsByTagName("VarB")
         self.ele_vars_i = self.root.getElementsByTagName("VarI")
@@ -55,16 +56,24 @@ class Comment_xml_parse():
                 self.comment_lists[i][int(attr_num)] = xml_list[num].getAttribute("comment")
             i = i+1   
             
-    
+            
+    @logger.catch()
     def comment_2_dom(self):
         """将注释列表写入dom中
         """
-        self.element_remove_all()
+        # 判断是否存在root和dom属性
+        if hasattr(self,"root"):
+            self.element_remove_all()
+        elif not hasattr(self,"dom"):
+            self.dom = xml.dom.minidom.Document()
+            self.root = self.dom.createElement("Variable")
+            # self.dom.appendChild(self.dom.createTextNode("\n"))
+            self.dom.appendChild(self.root)
         for i in range(5):
             for num in range(len(self.comment_lists[i])):
                 if not self.comment_lists[i][num] is None :
                         self.element_add(i,num,self.comment_lists[i][num])
-        self.root.appendChild(self.dom.createTextNode("\n"))
+        # self.root.appendChild(self.dom.createTextNode("\n"))
         
         
     # 如何增加子元素，以及增加子元素后写入文件的先后顺序有没有影响
@@ -79,14 +88,15 @@ class Comment_xml_parse():
         child_element = self.dom.createElement(self.__element__[element_type])
         child_element.setAttribute("num","%03d"%num)
         child_element.setAttribute("comment",comment)
-        self.root.appendChild(self.dom.createTextNode("\n\t"))    #解决生成的xml文件对齐问题
+        # self.root.appendChild(self.dom.createTextNode("\n\t"))    #解决生成的xml文件对齐问题
         self.root.appendChild(child_element)
 
     
     def element_remove_all(self):
         """移除子节点的所有元素
         """
-        del self.root.childNodes[:]
+        if hasattr(self,"root"):
+            del self.root.childNodes[:]
         pass
     
     
@@ -111,7 +121,7 @@ class Comment_xml_parse():
     def xml_write(self,path):
         self._xml_updata()
         with open(path, "w", encoding = "utf-8") as f:
-            self.dom.writexml(f, indent = "", addindent = "", newl = "", encoding = "utf-8")
+            self.dom.writexml(f, indent = "", addindent = "\t", newl = "\n", encoding = "utf-8")
     
     
 
@@ -120,7 +130,8 @@ class Comment_xml_parse():
     
 if __name__ == "__main__":    
   
-    xml_obj = Comment_xml_parse("var_note.xml")    
+    xml_obj = Comment_xml_parse()    
+    xml_obj.read_xml(r"temp\var_note.xml")
 
   
     print(" --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  -- ")

@@ -1,6 +1,3 @@
-from logging import fatal
-from os import stat, truncate
-from typing import Sized, Text
 from PyQt5.QtCore import pyqtSignal, pyqtSlot
 from PyQt5.QtWidgets import QDialog, QMessageBox
 from loguru import logger

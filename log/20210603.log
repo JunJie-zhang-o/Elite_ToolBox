@@ -5832,3 +5832,29 @@ Traceback (most recent call last):
                                          └ '127.0.0.1'
 
 paramiko.ssh_exception.SSHException: Unable to connect to 127.0.0.1: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+2021-06-03 22:58 : ping start
+2021-06-03 22:58 : 127.0.0.1
+2021-06-03 22:58 : An error has been caught in function 'run', process 'MainProcess' (19780), thread 'Dummy-2' (18008):
+Traceback (most recent call last):
+
+> File "e:\1-Git\My_Project\ToolBox\inc\Qthread_xml.py", line 40, in run
+    self.robot.connect()
+    │    │     └ <function MySftp.connect at 0x000002B0E53C4EE8>
+    │    └ <inc.Class_sftp.MySftp object at 0x000002B0E783A848>
+    └ <inc.Qthread_xml.Up_load object at 0x000002B0E78E4438>
+
+  File "e:\1-Git\My_Project\ToolBox\inc\Class_sftp.py", line 43, in connect
+    transport = paramiko.Transport((self.hostname, self.port))
+                │        │          │    │         │    └ 22
+                │        │          │    │         └ <inc.Class_sftp.MySftp object at 0x000002B0E783A848>
+                │        │          │    └ '127.0.0.1'
+                │        │          └ <inc.Class_sftp.MySftp object at 0x000002B0E783A848>
+                │        └ <class 'paramiko.transport.Transport'>
+                └ <module 'paramiko' from 'D:\\Program Files (x86)\\RoboDK\\Python37\\lib\\site-packages\\paramiko\\__init__.py'>
+
+  File "D:\Program Files (x86)\RoboDK\Python37\lib\site-packages\paramiko\transport.py", line 416, in __init__
+    "Unable to connect to {}: {}".format(hostname, reason)
+                                         │         └ '[WinError 10061] 由于目标计算机积极拒绝，无法连接。'
+                                         └ '127.0.0.1'
+
+paramiko.ssh_exception.SSHException: Unable to connect to 127.0.0.1: [WinError 10061] 由于目标计算机积极拒绝，无法连接。

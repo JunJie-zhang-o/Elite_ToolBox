@@ -3,13 +3,12 @@ from ctypes import POINTER, cast
 from ctypes.wintypes import MSG
 
 from PyQt5.QtCore import Qt, left
-from PyQt5.QtWidgets import QHBoxLayout, QLabel, QListWidget, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget
 from win32 import win32api, win32gui
 from win32.lib import win32con
 
 from titlebar import TitleBar
 from windoweffect import WindowEffect, MINMAXINFO, NCCALCSIZE_PARAMS
-from inc.UI_LeftTabWidget import LeftTabWidget
 
 
 class FramelessWindow(QWidget):

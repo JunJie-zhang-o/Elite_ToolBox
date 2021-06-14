@@ -1,6 +1,5 @@
 from PyQt5.QtCore import  QThread,pyqtSignal
 import time
-from PyQt5.QtWidgets import QMessageBox
 
 from loguru import logger
 import paramiko
@@ -70,8 +69,9 @@ class Download(QThread):
     """多线程：保存按钮触发，从界面中生成xml文件，并将本地文件下载至机器人
     """    
     pgbar_var = pyqtSignal(int)
+    exception_sign = pyqtSignal(int)
     
-    def __init__(self,data_list: list,xml_obj):
+    def __init__(self,data_list: list,xml_obj: object):
         self.data_list = data_list
         super().__init__()
         self.ip = glo_value.get_value("ip")
@@ -85,25 +85,28 @@ class Download(QThread):
         
         self.robot = MySftp(self.ip,self.port,self.username,self.password)
         
-        
-    def run(self):
-        self.pgbar_var.emit(0)
-        self.robot.connect()
-        self.pgbar_var.emit(10)
-        # 生成xml文件
-        self.xml_obj.comment_lists = self.data_list.copy()
-        self.pgbar_var.emit(20)
-        time.sleep(0.5)
-        self.xml_obj.comment_2_dom()
-        self.pgbar_var.emit(30)
-        self.xml_obj._xml_updata()
-        self.pgbar_var.emit(40)
-        self.xml_obj.xml_write(self.local_path)
-        time.sleep(0.5)
-        self.pgbar_var.emit(75)
-        # 从本地上传至机器人远端
-        self.robot.upload(self.local_path,self.remote_path)
-        time.sleep(0.5)
-        self.pgbar_var.emit(95)
-        self.robot.close()
-        self.pgbar_var.emit(100)
+    @logger.catch
+    def run(self,*args):
+        try :
+            self.pgbar_var.emit(0)
+            self.robot.connect()
+            self.pgbar_var.emit(10)
+            # 生成xml文件
+            self.xml_obj.comment_lists = self.data_list.copy()
+            self.pgbar_var.emit(20)
+            time.sleep(0.5)
+            self.xml_obj.comment_2_dom()
+            self.pgbar_var.emit(30)
+            self.xml_obj._xml_updata()
+            self.pgbar_var.emit(40)
+            self.xml_obj.xml_write(self.local_path)
+            time.sleep(0.5)
+            self.pgbar_var.emit(75)
+            # 从本地上传至机器人远端
+            self.robot.upload(self.local_path,self.remote_path)
+            time.sleep(0.5)
+            self.pgbar_var.emit(95)
+            # self.robot.close()
+            self.pgbar_var.emit(100)
+        except :
+            self.exception_sign.emit(1)
