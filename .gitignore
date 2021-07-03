@@ -1,0 +1,9 @@
+# 忽略pyc中间文件
+*.pyc
+
+# 忽略日志文件和虚拟环境
+/log
+/venv
+*/__pycache__
+.vscode
+.qt_for_python
