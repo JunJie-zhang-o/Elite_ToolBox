@@ -3,6 +3,7 @@ from ctypes import POINTER, cast
 from ctypes.wintypes import MSG
 
 from PyQt5.QtCore import Qt, left
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget
 from win32 import win32api, win32gui
 from win32.lib import win32con
@@ -17,6 +18,7 @@ class FramelessWindow(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setWindowIcon(QIcon("src\\icon\\connected0.png"))
         self.monitor_info = None
         self.windowEffect = WindowEffect()
         # 取消边框
@@ -25,7 +27,7 @@ class FramelessWindow(QWidget):
         # 添加阴影和窗口动画
         self.windowEffect.addShadowEffect(self.winId())
         self.windowEffect.addWindowAnimation(self.winId())
-        self.resize(900, 650)
+        self.resize(1111, 690)
         self.titleBar_init()
         self.main_layout_init()
         

@@ -1,9 +1,7 @@
 from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtWidgets import QApplication, QHBoxLayout, QLabel, QListWidget, QListWidgetItem,QScrollArea,QPushButton, QStackedWidget,QVBoxLayout,QWidget
+from PyQt5.QtWidgets import QApplication, QListWidget, QListWidgetItem
 
 import sys
-
-
 
 
 class LeftTabWidget(QListWidget):

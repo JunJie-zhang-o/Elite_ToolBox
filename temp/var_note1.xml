@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Variable>
-	<VarB comment="4" num="001"/>
-	<VarI comment="1" num="000"/>
-	<VarI comment="2" num="001"/>
-	<VarI comment="2" num="002"/>
-	<VarI comment="34" num="003"/>
-	<VarI comment="5" num="004"/>
-	<VarV comment="24" num="001"/>
-	<VarV comment="3" num="002"/>
+	<VarB comment="0" num="000"/>
+	<VarB comment="1" num="001"/>
+	<VarB comment="2" num="002"/>
+	<VarB comment="3" num="003"/>
+	<VarB comment="4" num="004"/>
+	<VarB comment="5" num="005"/>
+	<VarD comment="23" num="014"/>
+	<VarP comment="测0试P" num="000"/>
+	<VarP comment="测试P1" num="001"/>
+	<VarP comment="测试P23" num="002"/>
+	<VarP comment="333" num="003"/>
+	<VarV comment="8" num="009"/>
 </Variable>

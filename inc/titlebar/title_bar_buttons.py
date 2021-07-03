@@ -11,12 +11,12 @@ class MaximizeButton(QToolButton):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.iconPathDict_list = [
-            {'normal': r'inc\resource\images\title_bar\最大化按钮_normal_57_40.png',
-             'hover': r'inc\resource\images\title_bar\最大化按钮_hover_57_40.png',
-             'pressed': r'inc\resource\images\title_bar\最大化按钮_pressed_57_40.png'},
-            {'normal': r'inc\resource\images\title_bar\向下还原按钮_normal_57_40.png',
-             'hover': r'inc\resource\images\title_bar\向下还原按钮_hover_57_40.png',
-             'pressed': r'inc\resource\images\title_bar\向下还原按钮_pressed_57_40.png'}
+            {'normal': r'inc\titlebar\src\images\最大化按钮_normal_57_40.png',
+             'hover': r'inc\titlebar\src\images\最大化按钮_hover_57_40.png',
+             'pressed': r'inc\titlebar\src\images\最大化按钮_pressed_57_40.png'},
+            {'normal': r'inc\titlebar\src\images\向下还原按钮_normal_57_40.png',
+             'hover': r'inc\titlebar\src\images\向下还原按钮_hover_57_40.png',
+             'pressed': r'inc\titlebar\src\images\向下还原按钮_pressed_57_40.png'}
         ]
         self.resize(57, 40)
         # 设置标志位

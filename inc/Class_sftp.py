@@ -30,7 +30,7 @@ class MySftp:
         self.password = pawd
         
         
-    @logger.catch
+    # @logger.catch
     # @MyMerry.merry._try
     def connect(self):
         """创建一个已经连接的sftp
@@ -63,7 +63,7 @@ class MySftp:
         return path_name.split(match_chars)[-1]
         
 
-    @logger.catch
+    # @logger.catch
     def upload(self, local_path: str, remote_path: str):
         """将本地文件上载至远程主机
 

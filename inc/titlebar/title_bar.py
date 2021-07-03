@@ -11,7 +11,7 @@ from win32.win32gui import ReleaseCapture
 from loguru import logger
 
 from .title_bar_buttons import MaximizeButton, ThreeStateToolButton
-from inc.UI_connect_info import connect_info
+from inc.connect_window.UI_connect_info import connect_info
 import time
 
 
@@ -35,13 +35,13 @@ class TitleBar(QWidget):
     def __createButtons(self):
         """ 创建各按钮 """
         self.minBt = ThreeStateToolButton(
-            {'normal': r'inc\resource\images\title_bar\最小化按钮_normal_57_40.png',
-             'hover': r'inc\resource\images\title_bar\最小化按钮_hover_57_40.png',
-             'pressed': r'inc\resource\images\title_bar\最小化按钮_pressed_57_40.png'}, (57, 40), self)
+            {'normal': r'inc\titlebar\src\images\最小化按钮_normal_57_40.png',
+             'hover': r'inc\titlebar\src\images\最小化按钮_hover_57_40.png',
+             'pressed': r'inc\titlebar\src\images\最小化按钮_pressed_57_40.png'}, (57, 40), self)
         self.closeBt = ThreeStateToolButton(
-            {'normal': r'inc\resource\images\title_bar\关闭按钮_normal_57_40.png',
-             'hover': r'inc\resource\images\title_bar\关闭按钮_hover_57_40.png',
-             'pressed': r'inc\resource\images\title_bar\关闭按钮_pressed_57_40.png'}, (57, 40), self)
+            {'normal': r'inc\titlebar\src\images\关闭按钮_normal_57_40.png',
+             'hover': r'inc\titlebar\src\images\关闭按钮_hover_57_40.png',
+             'pressed': r'inc\titlebar\src\images\关闭按钮_pressed_57_40.png'}, (57, 40), self)
         self.maxBt = MaximizeButton(self)
         self.button_list = [self.minBt, self.maxBt, self.closeBt]
        
@@ -122,7 +122,7 @@ class TitleBar(QWidget):
 
     def __setQss(self):
         """ 设置层叠样式 """
-        with open(r'inc\resource\qss\title_bar.qss', encoding='utf-8') as f:
+        with open(r'inc\titlebar\src\qss\title_bar.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
 
 
@@ -137,7 +137,7 @@ class TitleBar(QWidget):
     
     def icon_and_title_bar_init(self):
          # 图标和标题栏
-        self.icon=QPixmap(r"inc\resource\images\title_bar\logo-single.png")
+        self.icon=QPixmap(r"inc\titlebar\src\images\logo-single.png")
         self.icon_lable=QLabel("icon",self,objectName="icon_lable")
         self.icon_lable.setPixmap(self.icon)
         self.icon_lable.setScaledContents(True)     #图标大小自适应lable
@@ -150,14 +150,14 @@ class TitleBar(QWidget):
         """设置按钮和日志按钮 
         """
         self.set_btn = ThreeStateToolButton(
-            {'normal': r'inc\resource\images\title_bar\setting.png',
-             'hover': r'inc\resource\images\title_bar\setting1.png',
-             'pressed': r'inc\resource\images\title_bar\setting1.png'}, (57, 40), self)
+            {'normal': r'inc\titlebar\src\images\setting.png',
+             'hover': r'inc\titlebar\src\images\setting1.png',
+             'pressed': r'inc\titlebar\src\images\setting1.png'}, (57, 40), self)
 
         self.log_btn = ThreeStateToolButton(
-            {'normal': r'inc\resource\images\title_bar\log.png',
-             'hover': r'inc\resource\images\title_bar\log1.png',
-             'pressed': r'inc\resource\images\title_bar\log1.png'}, (57, 40), self)
+            {'normal': r'inc\titlebar\src\images\log.png',
+             'hover': r'inc\titlebar\src\images\log1.png',
+             'pressed': r'inc\titlebar\src\images\log1.png'}, (57, 40), self)
         # 分割线
         self.title_line= self.spilt_line_V(self)
         self.title_line.setObjectName("title_line")
@@ -208,11 +208,14 @@ class TitleBar(QWidget):
     def connect_connect_info(self,*args):
         """连接界面展示，每次点击读取一次配置文件
         """
-        self.connect_info_widget.show()
+        # self.connect_info_widget.show()
+        self.connect_info_widget.exec()             #exec方法可以锁定窗口焦点
         self.connect_info_widget.comboBox_init(1)
         
         
     def slot_close_subprocess_thread(self):
-        """窗口关闭，停止ping线程
+        """窗口关闭时，如果有ping线程则停止ping线程（防止僵尸线程的出现）
         """
-        self.connect_info_widget.ping.proc1.kill()
+        if hasattr(self.connect_info_widget.ping,"proc1"):
+            self.connect_info_widget.ping.proc1.kill()
+        logger.info("ToolBox Close")
