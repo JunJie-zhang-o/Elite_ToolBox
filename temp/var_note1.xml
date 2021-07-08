@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Variable>
-	<VarB comment="0" num="000"/>
-	<VarB comment="1" num="001"/>
-	<VarB comment="2" num="002"/>
-	<VarB comment="3" num="003"/>
-	<VarB comment="4" num="004"/>
-	<VarB comment="5" num="005"/>
-	<VarD comment="23" num="014"/>
-	<VarP comment="测0试P" num="000"/>
-	<VarP comment="测试P1" num="001"/>
-	<VarP comment="测试P23" num="002"/>
-	<VarP comment="333" num="003"/>
-	<VarV comment="8" num="009"/>
+	<VarP comment="" num="000"/>
+	<VarP comment="出料点-抓取" num="010"/>
+	<VarP comment="出料点-上方" num="011"/>
+	<VarP comment="出料点-后退" num="012"/>
+	<VarP comment="过渡点" num="020"/>
+	<VarP comment="料架-放料点" num="021"/>
+	<VarP comment="料架-放料点上" num="022"/>
+	<VarP comment="料架-放料点外" num="023"/>
+	<VarP comment="料架-放料后外" num="024"/>
+	<VarP comment="料架-基准点" num="030"/>
 </Variable>

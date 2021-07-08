@@ -566,7 +566,7 @@ class Ui_PackageAngleWindow(object):
         self.label_28.setText(_translate("PackageAngleWindow", " 0°"))
         self.btn_download_Ec66.setToolTip(_translate("PackageAngleWindow", "<html><head/><body><p>下载Ec66装箱程序到机器人</p></body></html>"))
         self.btn_download_Ec66.setText(_translate("PackageAngleWindow", "下载"))
-        self.groupBox_4.setTitle(_translate("PackageAngleWindow", "Ec63"))
+        self.groupBox_4.setTitle(_translate("PackageAngleWindow", "Ec612"))
         self.label_3.setText(_translate("PackageAngleWindow", "612_package_angle"))
         self.label_41.setText(_translate("PackageAngleWindow", " 0°"))
         self.label_42.setText(_translate("PackageAngleWindow", " 90°"))

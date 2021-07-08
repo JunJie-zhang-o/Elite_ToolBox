@@ -53,8 +53,8 @@ END
         self.ip = glo.get_value("ip")
         self.username = glo.get_value("username")
         self.password = glo.get_value("password")
-        self.remote_path = r"/rbctrl/"+self.packing_angle[self.type]
-        self.local_path = r"/temp/"+self.packing_angle[self.type]
+        self.remote_path = r"/rbctrl/"+self.file_name[self.type]
+        self.local_path = r"temp/"+self.file_name[self.type]
         self.robot = MySftp(self.ip,22,self.username,self.password)
         global parm
         parm = self
@@ -72,7 +72,7 @@ END
         self.sign_pgbar.emit(30)
         self.robot.connect()
         self.sign_pgbar.emit(50)
-        self.robot.download(self.local_path,self.remote_path)
+        self.robot.upload(self.local_path,self.remote_path)
         self.sign_pgbar.emit(70)
 
         # 删除本地文件
@@ -88,7 +88,7 @@ END
         logger.error("ssh连接错误")
         logger.error(e)
         parm.sign_except.emit("ssh connect error")
-        
+               
         
     @merry._finally
     def merry_finally():

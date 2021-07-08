@@ -80,7 +80,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btn_start_recv">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -90,10 +90,22 @@
        <property name="text">
         <string>开始监控</string>
        </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btn_start_record">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -103,10 +115,13 @@
        <property name="text">
         <string>开始记录</string>
        </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="btn_record_set">
        <property name="toolTip">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;要保存数据的选项&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
@@ -127,6 +142,9 @@
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="4" column="1">
          <widget class="QLineEdit" name="LE_joint4">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -137,6 +155,9 @@
         </item>
         <item row="6" column="1">
          <widget class="QLineEdit" name="LE_joint6">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -147,6 +168,9 @@
         </item>
         <item row="2" column="1">
          <widget class="QLineEdit" name="LE_joint2">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -164,6 +188,9 @@
         </item>
         <item row="5" column="1">
          <widget class="QLineEdit" name="LE_joint5">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -174,6 +201,9 @@
         </item>
         <item row="3" column="1">
          <widget class="QLineEdit" name="LE_joint3">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -212,6 +242,21 @@
         </item>
         <item row="1" column="1">
          <widget class="QLineEdit" name="LE_joint1">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -272,6 +317,9 @@
         </item>
         <item row="1" column="1">
          <widget class="QLineEdit" name="LET_world_x">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -282,6 +330,9 @@
         </item>
         <item row="1" column="2">
          <widget class="QLineEdit" name="LET_user_x">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -299,6 +350,9 @@
         </item>
         <item row="2" column="1">
          <widget class="QLineEdit" name="LET_world_y">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -309,6 +363,9 @@
         </item>
         <item row="2" column="2">
          <widget class="QLineEdit" name="LET_user_y">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -326,6 +383,9 @@
         </item>
         <item row="3" column="1">
          <widget class="QLineEdit" name="LET_world_z">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -336,6 +396,9 @@
         </item>
         <item row="3" column="2">
          <widget class="QLineEdit" name="LET_user_z">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -353,6 +416,9 @@
         </item>
         <item row="4" column="1">
          <widget class="QLineEdit" name="LET_world_rx">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -363,6 +429,9 @@
         </item>
         <item row="4" column="2">
          <widget class="QLineEdit" name="LET_user_rx">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -380,6 +449,9 @@
         </item>
         <item row="5" column="1">
          <widget class="QLineEdit" name="LET_world_ry">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -390,6 +462,9 @@
         </item>
         <item row="5" column="2">
          <widget class="QLineEdit" name="LET_user_ry">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -407,6 +482,9 @@
         </item>
         <item row="6" column="1">
          <widget class="QLineEdit" name="LET_world_rz">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -417,6 +495,9 @@
         </item>
         <item row="6" column="2">
          <widget class="QLineEdit" name="LET_user_rz">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -469,6 +550,9 @@
           <property name="text">
            <string/>
           </property>
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -488,6 +572,9 @@
         </item>
         <item row="1" column="2">
          <widget class="QLineEdit" name="LE_user_x">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -511,6 +598,9 @@
         </item>
         <item row="2" column="1">
          <widget class="QLineEdit" name="LE_world_y">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -527,6 +617,9 @@
         </item>
         <item row="2" column="2">
          <widget class="QLineEdit" name="LE_user_y">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -550,6 +643,9 @@
         </item>
         <item row="3" column="1">
          <widget class="QLineEdit" name="LE_world_z">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -566,6 +662,9 @@
         </item>
         <item row="3" column="2">
          <widget class="QLineEdit" name="LE_user_z">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -589,6 +688,9 @@
         </item>
         <item row="4" column="1">
          <widget class="QLineEdit" name="LE_world_rx">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -605,6 +707,9 @@
         </item>
         <item row="4" column="2">
          <widget class="QLineEdit" name="LE_user_rx">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -628,6 +733,9 @@
         </item>
         <item row="5" column="1">
          <widget class="QLineEdit" name="LE_world_ry">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -644,6 +752,9 @@
         </item>
         <item row="5" column="2">
          <widget class="QLineEdit" name="LE_user_ry">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -667,6 +778,9 @@
         </item>
         <item row="6" column="1">
          <widget class="QLineEdit" name="LE_world_rz">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -683,6 +797,9 @@
         </item>
         <item row="6" column="2">
          <widget class="QLineEdit" name="LE_user_rz">
+          <property name="maxLength">
+           <number>10</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -713,7 +830,7 @@
         <item row="2" column="0">
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>抱闸状态：</string>
+           <string>使能状态：</string>
           </property>
          </widget>
         </item>
@@ -1076,7 +1193,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab">
            <attribute name="title">
@@ -1317,7 +1434,7 @@
             <item row="0" column="0">
              <widget class="QLabel" name="label_106">
               <property name="text">
-               <string>DO01：</string>
+               <string>DO00：</string>
               </property>
              </widget>
             </item>
@@ -1331,7 +1448,7 @@
             <item row="0" column="2">
              <widget class="QLabel" name="label_113">
               <property name="text">
-               <string>DO05：</string>
+               <string>DO04：</string>
               </property>
              </widget>
             </item>
@@ -1345,7 +1462,7 @@
             <item row="0" column="4">
              <widget class="QLabel" name="label_122">
               <property name="text">
-               <string>DO09：</string>
+               <string>DO08：</string>
               </property>
              </widget>
             </item>
@@ -1359,7 +1476,7 @@
             <item row="0" column="6">
              <widget class="QLabel" name="label_124">
               <property name="text">
-               <string>DO13：</string>
+               <string>DO12：</string>
               </property>
              </widget>
             </item>
@@ -1373,7 +1490,7 @@
             <item row="0" column="8">
              <widget class="QLabel" name="label_126">
               <property name="text">
-               <string>DO17：</string>
+               <string>DO16：</string>
               </property>
              </widget>
             </item>
@@ -1387,7 +1504,7 @@
             <item row="1" column="0">
              <widget class="QLabel" name="label_107">
               <property name="text">
-               <string>DO02：</string>
+               <string>DO01：</string>
               </property>
              </widget>
             </item>
@@ -1401,12 +1518,12 @@
             <item row="1" column="2">
              <widget class="QLabel" name="label_116">
               <property name="text">
-               <string>DO06：</string>
+               <string>DO05：</string>
               </property>
              </widget>
             </item>
             <item row="1" column="3">
-             <widget class="QLabel" name="LB_DO05_2">
+             <widget class="QLabel" name="LB_DO06">
               <property name="text">
                <string>——</string>
               </property>
@@ -1415,7 +1532,7 @@
             <item row="1" column="4">
              <widget class="QLabel" name="label_128">
               <property name="text">
-               <string>DO10：</string>
+               <string>DO09：</string>
               </property>
              </widget>
             </item>
@@ -1429,7 +1546,7 @@
             <item row="1" column="6">
              <widget class="QLabel" name="label_134">
               <property name="text">
-               <string>DO14：</string>
+               <string>DO13：</string>
               </property>
              </widget>
             </item>
@@ -1443,7 +1560,7 @@
             <item row="1" column="8">
              <widget class="QLabel" name="label_140">
               <property name="text">
-               <string>DO18：</string>
+               <string>DO17：</string>
               </property>
              </widget>
             </item>
@@ -1457,7 +1574,7 @@
             <item row="2" column="0">
              <widget class="QLabel" name="label_105">
               <property name="text">
-               <string>DO03：</string>
+               <string>DO02：</string>
               </property>
              </widget>
             </item>
@@ -1471,7 +1588,7 @@
             <item row="2" column="2">
              <widget class="QLabel" name="label_118">
               <property name="text">
-               <string>DO07：</string>
+               <string>DO06：</string>
               </property>
              </widget>
             </item>
@@ -1485,7 +1602,7 @@
             <item row="2" column="4">
              <widget class="QLabel" name="label_130">
               <property name="text">
-               <string>DO11：</string>
+               <string>DO10：</string>
               </property>
              </widget>
             </item>
@@ -1499,7 +1616,7 @@
             <item row="2" column="6">
              <widget class="QLabel" name="label_136">
               <property name="text">
-               <string>DO15：</string>
+               <string>DO14：</string>
               </property>
              </widget>
             </item>
@@ -1513,7 +1630,7 @@
             <item row="2" column="8">
              <widget class="QLabel" name="label_142">
               <property name="text">
-               <string>DO19：</string>
+               <string>DO18：</string>
               </property>
              </widget>
             </item>
@@ -1527,7 +1644,7 @@
             <item row="3" column="0">
              <widget class="QLabel" name="label_108">
               <property name="text">
-               <string>DO04：</string>
+               <string>DO03：</string>
               </property>
              </widget>
             </item>
@@ -1541,7 +1658,7 @@
             <item row="3" column="2">
              <widget class="QLabel" name="label_119">
               <property name="text">
-               <string>DO08：</string>
+               <string>DO07：</string>
               </property>
              </widget>
             </item>
@@ -1555,7 +1672,7 @@
             <item row="3" column="4">
              <widget class="QLabel" name="label_132">
               <property name="text">
-               <string>DO12：</string>
+               <string>DO11：</string>
               </property>
              </widget>
             </item>
@@ -1569,7 +1686,7 @@
             <item row="3" column="6">
              <widget class="QLabel" name="label_138">
               <property name="text">
-               <string>DO16：</string>
+               <string>DO15：</string>
               </property>
              </widget>
             </item>
@@ -1583,7 +1700,7 @@
             <item row="3" column="8">
              <widget class="QLabel" name="label_144">
               <property name="text">
-               <string>DO20：</string>
+               <string>DO19：</string>
               </property>
              </widget>
             </item>

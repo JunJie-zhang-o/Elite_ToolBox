@@ -104,6 +104,11 @@ class Window(FramelessWindow):
         else:
             self.comment_widget.upload_btn.setEnabled(ping_signal)
             self.comment_widget.download_btn.setEnabled(ping_signal)
+        # 8056界面控制
+        if ping_signal :
+            self.widget_8056.btn_start_recv.setEnabled(True)
+        else:
+            self.widget_8056.btn_start_recv.setEnabled(False)
         # 打包界面按钮控制
         if ping_signal :
             self.package_angle_window.btn_download_Ec63.setEnabled(True)

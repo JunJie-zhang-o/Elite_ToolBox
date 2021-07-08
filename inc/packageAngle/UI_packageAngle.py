@@ -56,4 +56,5 @@ class PackageAngle(Ui_PackageAngleWindow,QWidget):
             self.btn_download_Ec66.setEnabled(not sign_processing)
             self.btn_download_Ec612.setEnabled(not sign_processing)
         if sign_processing == False:
-            del self.package
+            # self.package.terminate()
+            pass

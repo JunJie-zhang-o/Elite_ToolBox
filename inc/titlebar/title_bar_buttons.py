@@ -22,7 +22,7 @@ class MaximizeButton(QToolButton):
         # 设置标志位
         self.isMax = False
         self.setIcon(
-            QIcon(r'inc\resource\images\title_bar\最大化按钮_normal_57_40.png'))
+            QIcon(r'inc\titlebar\src\images\最大化按钮_normal_57_40.png'))
         self.setIconSize(QSize(57, 40))
 
     def __updateIcon(self, iconState: str):

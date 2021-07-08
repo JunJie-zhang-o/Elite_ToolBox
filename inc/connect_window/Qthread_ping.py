@@ -24,7 +24,7 @@ class NetWorkPing(QThread):
         while 1:
             # logger.info("reading")
             ping_result = self.proc1.stdout.readline().decode("gbk")
-            if  "TTL" in ping_result:
+            if  "TTL=" in ping_result:
                 # 在线
                 self.ping_signal.emit(True)    #反馈信号出去
                 # logger.info("true")
