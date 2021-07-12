@@ -32,7 +32,9 @@ class Port_8056(QThread):
         self.HOST = glo.get_value("ip")
         self.index = 0
         self.lost = 0
-        self.data_len = 366
+        # self.data_len = 366
+        self.data_len = 462
+        self.data_len = 535
         
 
     def __var__(self):
@@ -70,8 +72,8 @@ class Port_8056(QThread):
         dic['digital_ioOutput'] = 'Q'
         # 碰撞报警状态
         dic['collision'] = 'B'
-        # dic['machineFlangePose01'],dic['machineFlangePose02'],dic['machineFlangePose03'],dic['machineFlangePose04'],dic['machineFlangePose05'],dic['machineFlangePose06'] = 'd'*6
-        # dic['machineUserFlangePose01'],dic['machineUserFlangePose02'],dic['machineUserFlangePose03'],dic['machineUserFlangePose04'],dic['machineUserFlangePose05'],dic['machineUserFlangePose06'] = 'd'*6
+        dic['machineFlangePose01'],dic['machineFlangePose02'],dic['machineFlangePose03'],dic['machineFlangePose04'],dic['machineFlangePose05'],dic['machineFlangePose06'] = 'd'*6
+        dic['machineUserFlangePose01'],dic['machineUserFlangePose02'],dic['machineUserFlangePose03'],dic['machineUserFlangePose04'],dic['machineUserFlangePose05'],dic['machineUserFlangePose06'] = 'd'*6
         return dic
 
     @merry._try
@@ -120,11 +122,10 @@ class Port_8056(QThread):
             for key in dic.keys ():
                 output += str(key) + ":" + str(dic[key][1][0]) + ";\n"
                 output = "lost : " + str(self.lost) + " index : " + str(self.index) + ";" + output + "\n"
-            if self.index %10 == 0:
+            if self.index % 15 == 0:
                 # 发射信号
-                # logger.info("2")
-                # logger.info(dic)
                 # self.print_info(dic)
+                print(dic["MessageSize"][1][0])
                 self.dic_8056.emit(dic)
 
 
@@ -132,8 +133,6 @@ class Port_8056(QThread):
             output = ""
             dic = {}
             data = ""
-            # logger.info("3")
-            # logger.info(dic)
             # self.msleep(1)
 
 

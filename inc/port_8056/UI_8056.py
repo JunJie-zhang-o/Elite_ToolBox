@@ -130,27 +130,27 @@ class UI_8056(Ui_Widget_8056,QWidget):
         """
         # 机器人状态
         robotState = ("停止","暂停","急停","运行","报警")
-        if dic["robotState"][1][0] <=4:
+        if dic["robotState"][1][0] >=0 and dic["robotState"][1][0] <=4:
             self.LB_running_state.setText(robotState[dic["robotState"][1][0]])
         # 伺服使能状态
         servoReady = ("未使能","使能中")
-        if dic["servoReady"][1][0] <=1:
+        if dic["servoReady"][1][0] >=0 and dic["servoReady"][1][0] <= 1:
             self.LB_brake_state.setText(servoReady[dic["servoReady"][1][0]])
         # 同步状态
         can_motor_run = ("未同步","同步")
-        if dic["can_motor_run"][1][0] <= 1:
+        if dic["can_motor_run"][1][0] >=0 and dic["can_motor_run"][1][0] <= 1:
             self.LB_synch_state.setText(can_motor_run[dic["can_motor_run"][1][0]])
         # 循环模式
         autorun_cycleMode = ("单步","单循环","连续循环")
-        if dic["autorun_cycleMode"][1][0] <= 2:
+        if dic["autorun_cycleMode"][1][0] >=0 and  dic["autorun_cycleMode"][1][0] <= 2:
             self.LB_cyclical_mode.setText(autorun_cycleMode[dic["autorun_cycleMode"][1][0]])
         # 机器人模式
         robotMode = ("示教模式","自动模式","远程模式")   
-        if dic["robotMode"][1][0] <= 2:
+        if dic["robotMode"][1][0]>=0 and dic["robotMode"][1][0] <= 2:
             self.LB_robot_mode.setText(robotMode[dic["robotMode"][1][0]])     
         # 碰撞报警状态
         collision = ('未报警','碰撞报警')
-        if dic["collision"][1][0] <= 1:
+        if dic["collision"][1][0] >=0 and dic["collision"][1][0] <= 1:
             self.LB_crash_state.setText(collision[dic["collision"][1][0]])
 
     
@@ -159,12 +159,12 @@ class UI_8056(Ui_Widget_8056,QWidget):
         """解析数字量信息
         """
         #打 印 数 字 量 输 入 口 数 据 的 二 进 制 形 式
-        print("数字量输入的二进制数据")
-        print(bin(dic['digital_ioInput'][1][0])[2:].zfill(64))
+        # print("数字量输入的二进制数据")
+        # print(bin(dic['digital_ioInput'][1][0])[2:].zfill(64))
         di = bin(dic['digital_ioInput'][1][0])[2:].zfill(64)
         #打 印 数 字 量 输 出 口 数 据 的 二 进 制 形 式
-        print("数字量输出的二进制数据")
-        print(bin(dic['digital_ioOutput'][1][0])[2:].zfill(64))
+        # print("数字量输出的二进制数据")
+        # print(bin(dic['digital_ioOutput'][1][0])[2:].zfill(64))
         do = bin(dic['digital_ioOutput'][1][0])[2:].zfill(64)
         
         # 

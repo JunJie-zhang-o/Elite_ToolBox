@@ -8,8 +8,8 @@ from PyQt5.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget
 from win32 import win32api, win32gui
 from win32.lib import win32con
 
-from titlebar import TitleBar
-from windoweffect import WindowEffect, MINMAXINFO, NCCALCSIZE_PARAMS
+from inc.titlebar import TitleBar
+from inc.windoweffect import WindowEffect, MINMAXINFO, NCCALCSIZE_PARAMS
 
 
 class FramelessWindow(QWidget):
