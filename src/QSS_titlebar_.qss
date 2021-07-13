@@ -1,0 +1,6 @@
+titleBar{
+    min-height: 60px;
+    max-height: 60px;
+    /* border-bottom:2px solid  #1781B5; */
+}
+

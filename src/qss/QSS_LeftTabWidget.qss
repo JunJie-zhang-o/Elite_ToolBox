@@ -1,0 +1,22 @@
+QListWidget{
+    /* min-width: 120px;
+    max-width: 120px; */
+    color:#7d7d7d;
+    background: #f5f5f7;
+    font-size: 16px;
+    
+    border-right: 1px solid #e1e1e2;
+}
+
+QlistWidget::Item{
+    border-bottom:2px solid  #1781B5;
+}
+
+
+
+QListWidget::Item:selected{
+    background: #e6e7ea;
+    color: #000000;
+    border-left: 7px solid #1781B5;
+}
+
