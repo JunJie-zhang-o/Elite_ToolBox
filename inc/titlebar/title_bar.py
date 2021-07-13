@@ -35,13 +35,13 @@ class TitleBar(QWidget):
     def __createButtons(self):
         """ 创建各按钮 """
         self.minBt = ThreeStateToolButton(
-            {'normal': r'inc\titlebar\src\images\最小化按钮_normal_57_40.png',
-             'hover': r'inc\titlebar\src\images\最小化按钮_hover_57_40.png',
-             'pressed': r'inc\titlebar\src\images\最小化按钮_pressed_57_40.png'}, (57, 40), self)
+            {'normal': r'src\images\最小化按钮_normal_57_40.png',
+             'hover': r'src\images\最小化按钮_hover_57_40.png',
+             'pressed': r'src\images\最小化按钮_pressed_57_40.png'}, (57, 40), self)
         self.closeBt = ThreeStateToolButton(
-            {'normal': r'inc\titlebar\src\images\关闭按钮_normal_57_40.png',
-             'hover': r'inc\titlebar\src\images\关闭按钮_hover_57_40.png',
-             'pressed': r'inc\titlebar\src\images\关闭按钮_pressed_57_40.png'}, (57, 40), self)
+            {'normal': r'src\images\关闭按钮_normal_57_40.png',
+             'hover': r'src\images\关闭按钮_hover_57_40.png',
+             'pressed': r'src\images\关闭按钮_pressed_57_40.png'}, (57, 40), self)
         self.maxBt = MaximizeButton(self)
         self.button_list = [self.minBt, self.maxBt, self.closeBt]
        
@@ -122,7 +122,7 @@ class TitleBar(QWidget):
 
     def __setQss(self):
         """ 设置层叠样式 """
-        with open(r'inc\titlebar\src\qss\title_bar.qss', encoding='utf-8') as f:
+        with open(r'src\qss\title_bar.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
 
 
@@ -137,7 +137,7 @@ class TitleBar(QWidget):
     
     def icon_and_title_bar_init(self):
          # 图标和标题栏
-        self.icon=QPixmap(r"inc\titlebar\src\images\logo-single.png")
+        self.icon=QPixmap(r"src\images\logo-single.png")
         self.icon_lable=QLabel("icon",self,objectName="icon_lable")
         self.icon_lable.setPixmap(self.icon)
         self.icon_lable.setScaledContents(True)     #图标大小自适应lable
@@ -150,14 +150,14 @@ class TitleBar(QWidget):
         """设置按钮和日志按钮 
         """
         self.set_btn = ThreeStateToolButton(
-            {'normal': r'inc\titlebar\src\images\setting.png',
-             'hover': r'inc\titlebar\src\images\setting1.png',
-             'pressed': r'inc\titlebar\src\images\setting1.png'}, (57, 40), self)
+            {'normal': r'src\images\setting.png',
+             'hover': r'src\images\setting1.png',
+             'pressed': r'src\images\setting1.png'}, (57, 40), self)
 
         self.log_btn = ThreeStateToolButton(
-            {'normal': r'inc\titlebar\src\images\log.png',
-             'hover': r'inc\titlebar\src\images\log1.png',
-             'pressed': r'inc\titlebar\src\images\log1.png'}, (57, 40), self)
+            {'normal': r'src\images\log.png',
+             'hover': r'src\images\log1.png',
+             'pressed': r'src\images\log1.png'}, (57, 40), self)
         # 分割线
         self.title_line= self.spilt_line_V(self)
         self.title_line.setObjectName("title_line")

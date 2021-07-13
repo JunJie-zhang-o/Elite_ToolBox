@@ -12,7 +12,7 @@ class LeftTabWidget(QListWidget):
         self.list_str=item_lists
         
         self.__UI_init__()
-        self.setStyleSheet(self.qss_style("src\QSS_LeftTabWidget.qss"))
+        self.setStyleSheet(self.qss_style("src\qss\QSS_LeftTabWidget.qss"))
         
         
     def __UI_init__(self):

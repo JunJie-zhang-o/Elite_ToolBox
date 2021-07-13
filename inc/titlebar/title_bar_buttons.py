@@ -11,18 +11,18 @@ class MaximizeButton(QToolButton):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.iconPathDict_list = [
-            {'normal': r'inc\titlebar\src\images\最大化按钮_normal_57_40.png',
-             'hover': r'inc\titlebar\src\images\最大化按钮_hover_57_40.png',
-             'pressed': r'inc\titlebar\src\images\最大化按钮_pressed_57_40.png'},
-            {'normal': r'inc\titlebar\src\images\向下还原按钮_normal_57_40.png',
-             'hover': r'inc\titlebar\src\images\向下还原按钮_hover_57_40.png',
-             'pressed': r'inc\titlebar\src\images\向下还原按钮_pressed_57_40.png'}
+            {'normal': r'src\images\最大化按钮_normal_57_40.png',
+             'hover': r'src\images\最大化按钮_hover_57_40.png',
+             'pressed': r'src\images\最大化按钮_pressed_57_40.png'},
+            {'normal': r'src\images\向下还原按钮_normal_57_40.png',
+             'hover': r'src\images\向下还原按钮_hover_57_40.png',
+             'pressed': r'src\images\向下还原按钮_pressed_57_40.png'}
         ]
         self.resize(57, 40)
         # 设置标志位
         self.isMax = False
         self.setIcon(
-            QIcon(r'inc\titlebar\src\images\最大化按钮_normal_57_40.png'))
+            QIcon(r'src\images\最大化按钮_normal_57_40.png'))
         self.setIconSize(QSize(57, 40))
 
     def __updateIcon(self, iconState: str):
