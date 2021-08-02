@@ -26,7 +26,7 @@ class Up_load(QThread):
 
     def __init__(self,xml_obj):
         super().__init__()
-        
+        logger.info("Up_load init")
         self.ip = glo_value.get_value("ip")
         self.port = 22
         self.username = glo_value.get_value("username")
@@ -43,6 +43,7 @@ class Up_load(QThread):
 
     @merry._try
     def run(self):
+        logger.info("Up_load init")
         self.exception_sign.emit("btn handle start")
         logger.info("upload btn handle start")
         self.robot.connect()

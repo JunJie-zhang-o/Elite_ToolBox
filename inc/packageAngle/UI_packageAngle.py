@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QMessageBox, QWidget
+from loguru import logger
 from inc.ui2py.packageAngle import Ui_PackageAngleWindow
 from inc.packageAngle.Qthread_package import PackageAngleDownload
 
@@ -23,6 +24,7 @@ class PackageAngle(Ui_PackageAngleWindow,QWidget):
     def slot_package_angle(self,type):
         """按钮触发事件
         """
+        logger.info("PackageAngle download clicked param="+type)
         self.package = PackageAngleDownload(type)
         self.package.sign_processing.connect(self.slot_btn_enable)
         self.package.sign_pgbar.connect(self.slot_pgbar)

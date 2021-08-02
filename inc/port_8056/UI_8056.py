@@ -26,6 +26,7 @@ class UI_8056(Ui_Widget_8056,QWidget):
 
         
     def slot_recv(self):
+        logger.info("UI_8056 start recv btn clicked")
         if self.btn_start_recv.isChecked() == True:
             self.btn_start_recv.setText("停止监控")
             self.port_8056 = Port_8056()
@@ -70,32 +71,32 @@ class UI_8056(Ui_Widget_8056,QWidget):
             self.LET_user_rx.setText(format(math.degrees(dic["machineUserPose04"][1][0]),"4.5f"))
             self.LET_user_ry.setText(format(math.degrees(dic["machineUserPose05"][1][0]),"4.5f"))
             self.LET_user_rz.setText(format(math.degrees(dic["machineUserPose06"][1][0]),"4.5f"))
-        # 法兰中心直角坐标
-        """
-        self.LE_world_x.setText(format(dic["machineFlangePose01"][1][0],"4.5f"))
-        self.LE_world_y.setText(format(dic["machineFlangePose02"][1][0],"4.5f"))
-        self.LE_world_z.setText(format(dic["machineFlangePose03"][1][0],"4.5f"))
-        if  self.show_deg_or_rad == False:
-            self.LE_world_rx.setText(format(dic["machineFlangePose04"][1][0],"4.5f"))
-            self.LE_world_ry.setText(format(dic["machineFlangePose05"][1][0],"4.5f"))
-            self.LE_world_rz.setText(format(dic["machineFlangePose06"][1][0],"4.5f"))
-        else:
-            self.LE_world_rx.setText(format(math.degrees(dic["machineFlangePose04"][1][0]),"4.5f"))
-            self.LE_world_ry.setText(format(math.degrees(dic["machineFlangePose05"][1][0]),"4.5f"))
-            self.LE_world_rz.setText(format(math.degrees(dic["machineFlangePose06"][1][0]),"4.5f"))
-        # 法兰坐标用户坐标
-        self.LE_user_x.setText(format(dic["machineUserFlangePose01"][1][0],"4.5f"))
-        self.LE_user_y.setText(format(dic["machineUserFlangePose02"][1][0],"4.5f"))
-        self.LE_user_z.setText(format(dic["machineUserFlangePose03"][1][0],"4.5f"))
-        if  self.show_deg_or_rad == False:
-            self.LE_user_rx.setText(format(dic["machineUserFlangePose04"][1][0],"4.5f"))
-            self.LE_user_ry.setText(format(dic["machineUserFlangePose05"][1][0],"4.5f"))
-            self.LE_user_rz.setText(format(dic["machineUserFlangePose06"][1][0],"4.5f"))
-        else:
-            self.LE_user_rx.setText(format(math.degrees(dic["machineUserFlangePose04"][1][0]),"4.5f"))
-            self.LE_user_ry.setText(format(math.degrees(dic["machineUserFlangePose05"][1][0]),"4.5f"))
-            self.LE_user_rz.setText(format(math.degrees(dic["machineUserFlangePose06"][1][0]),"4.5f"))
-        """
+        if self.port_8056.data_len > 366 :
+            # 法兰中心直角坐标
+            self.LE_world_x.setText(format(dic["machineFlangePose01"][1][0],"4.5f"))
+            self.LE_world_y.setText(format(dic["machineFlangePose02"][1][0],"4.5f"))
+            self.LE_world_z.setText(format(dic["machineFlangePose03"][1][0],"4.5f"))
+            if  self.show_deg_or_rad == False:
+                self.LE_world_rx.setText(format(dic["machineFlangePose04"][1][0],"4.5f"))
+                self.LE_world_ry.setText(format(dic["machineFlangePose05"][1][0],"4.5f"))
+                self.LE_world_rz.setText(format(dic["machineFlangePose06"][1][0],"4.5f"))
+            else:
+                self.LE_world_rx.setText(format(math.degrees(dic["machineFlangePose04"][1][0]),"4.5f"))
+                self.LE_world_ry.setText(format(math.degrees(dic["machineFlangePose05"][1][0]),"4.5f"))
+                self.LE_world_rz.setText(format(math.degrees(dic["machineFlangePose06"][1][0]),"4.5f"))
+            # 法兰坐标用户坐标
+            self.LE_user_x.setText(format(dic["machineUserFlangePose01"][1][0],"4.5f"))
+            self.LE_user_y.setText(format(dic["machineUserFlangePose02"][1][0],"4.5f"))
+            self.LE_user_z.setText(format(dic["machineUserFlangePose03"][1][0],"4.5f"))
+            if  self.show_deg_or_rad == False:
+                self.LE_user_rx.setText(format(dic["machineUserFlangePose04"][1][0],"4.5f"))
+                self.LE_user_ry.setText(format(dic["machineUserFlangePose05"][1][0],"4.5f"))
+                self.LE_user_rz.setText(format(dic["machineUserFlangePose06"][1][0],"4.5f"))
+            else:
+                self.LE_user_rx.setText(format(math.degrees(dic["machineUserFlangePose04"][1][0]),"4.5f"))
+                self.LE_user_ry.setText(format(math.degrees(dic["machineUserFlangePose05"][1][0]),"4.5f"))
+                self.LE_user_rz.setText(format(math.degrees(dic["machineUserFlangePose06"][1][0]),"4.5f"))
+            
         # 关节力矩
         self.LB_force1.setText(format(dic["torque01"][1][0],"4.3f"))
         self.LB_force2.setText(format(dic["torque02"][1][0],"4.3f"))
@@ -122,6 +123,18 @@ class UI_8056(Ui_Widget_8056,QWidget):
 
         self.robot_state(dic)
         self.di_do(dic)
+
+
+        if self.port_8056.data_len > 462 :
+            self.LE_joint1_speed.setText(format(dic["jointSpeed01"][1][0],"4.5f"))
+            self.LE_joint2_speed.setText(format(dic["jointSpeed02"][1][0],"4.5f"))
+            self.LE_joint3_speed.setText(format(dic["jointSpeed03"][1][0],"4.5f"))
+            self.LE_joint4_speed.setText(format(dic["jointSpeed04"][1][0],"4.5f"))
+            self.LE_joint5_speed.setText(format(dic["jointSpeed05"][1][0],"4.5f"))
+            self.LE_joint6_speed.setText(format(dic["jointSpeed06"][1][0],"4.5f"))
+            
+            self.LE_speed_TCP.setText(format(dic["tcpSpeed01"][1][0],"4.3f"))
+
         pass
     
     # @logger.catch
@@ -152,7 +165,11 @@ class UI_8056(Ui_Widget_8056,QWidget):
         collision = ('未报警','碰撞报警')
         if dic["collision"][1][0] >=0 and dic["collision"][1][0] <= 1:
             self.LB_crash_state.setText(collision[dic["collision"][1][0]])
-
+        if self.port_8056.data_len > 462 :
+            emergencyStopState = ("未急停","已急停")
+            if dic["emergencyStopState"][1][0] >= 0 and dic["emergencyStopState"][1][0] <=1 :
+                self.LB_stop_state.setText(emergencyStopState[dic["emergencyStopState"][1][0]])
+        
     
     
     def di_do(self,dic):
@@ -186,6 +203,7 @@ class UI_8056(Ui_Widget_8056,QWidget):
     def solt_radio_btn(self):
         # 获取发送对象
         sender = self.sender()
+        logger.info("UI_8056 radio btn clicked param="+sender.text())
         # 角度
         if sender.text() == self.Rbtn_deg.text():
             self.show_deg_or_rad = True
@@ -195,9 +213,11 @@ class UI_8056(Ui_Widget_8056,QWidget):
             
             
     def except_msgbox(self,except_sign):
-        print(except_sign+"111111111")
+        # print(except_sign+"111111111")
         if except_sign == "ConnectionRefusedError":
             msg = "请检查网络连接或8056远程端口是否正常打开"
+        if except_sign == "8056 recv timeout" or except_sign == "ConnectionResetError":
+            msg = "请检查网络连接是否中断"
         QMessageBox.warning(self,"监控失败",msg)
         self.btn_start_recv.setText("开始监控")
         self.btn_start_recv.setChecked(False)

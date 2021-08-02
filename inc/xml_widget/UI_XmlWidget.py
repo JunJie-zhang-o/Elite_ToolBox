@@ -140,6 +140,7 @@ class CommentWidget(QWidget):
     def slot_btn_clear(self):
         """清空按钮
         """
+        logger.info("CommentWidget clear btn clicked")
         for i in self.dict_line_edit.values():
             i.clear()
         pass
@@ -148,6 +149,7 @@ class CommentWidget(QWidget):
     def slot_btn_upload(self,):
         """槽函数：上载按钮触发
         """
+        logger.info("CommentWidget upload btn clicked")
         self.xml_obj = Comment_xml_parse()
         self.up_load = Up_load(self.xml_obj)
         self.up_load.pgbar_percent.connect(self.slot_pgbar)
@@ -253,6 +255,7 @@ class CommentWidget(QWidget):
     def slot_btn_save(self,*args):
         """保存按钮的槽函数
         """
+        logger.info("CommentWidget save btn clicked")
         dict_line_edit_text = list(self.dict_line_edit_key.values())
         list_line_edit_text = [dict_line_edit_text[0:256],dict_line_edit_text[256:512],
                                dict_line_edit_text[512:768],dict_line_edit_text[768:1024],
@@ -266,6 +269,7 @@ class CommentWidget(QWidget):
     def slog_combox(self):
         """下拉框按钮
         """
+        logger.info("CommentWidget combox index changed")
         self.language = self.comobo_box.currentIndex() 
         print(self.language)
         
@@ -273,6 +277,7 @@ class CommentWidget(QWidget):
     def slot_btn_load(self):
         """加载按钮槽函数
         """
+        logger.info("CommentWidget load btn clicked")
         file_path,l = QFileDialog.getOpenFileName(self,"加载Excel","C://","*.xls")
         if file_path != None and file_path != "":
             self.load_excel = LoadExcel(file_path,self.language)
@@ -295,6 +300,7 @@ class CommentWidget(QWidget):
     def slot_btn_create(self,*args):
         """生成Excel槽函数
         """
+        logger.info("CommentWidget create btn clicked")
         file_path,l = QFileDialog.getSaveFileName(self,"生成Excel","C://","*.xls")
         if file_path !="" :
             dict_line_edit_text = list(self.dict_line_edit_key.values())

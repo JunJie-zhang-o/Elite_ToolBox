@@ -124,6 +124,14 @@ class Window(FramelessWindow):
             self.package_angle_window.btn_download_Ec612.setEnabled(False)
 
         
+def is_cerate_file(name:str):
+    """检查当前工作目录是否存在某个文件夹，没有的话自动创建,
+    防止某些写文件出错
+    Args:
+        name (str): 目录名称
+    """
+    if not os.path.isdir(name):
+        os.mkdir(name)
 
 
 
@@ -138,7 +146,8 @@ def high_dpi_setting():
 
 if __name__ == "__main__":
     
-
+    logger.info("")
+    is_cerate_file("temp")
     # print(sys.path)
     # print(os.getcwd())
     # high_dpi_setting()

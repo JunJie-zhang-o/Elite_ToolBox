@@ -22,6 +22,7 @@ class Port_8056(QThread):
     @merry._try
     def __init__(self) -> None:
         super().__init__()
+        logger.info("Port_8056 init")
         # 先定义全局变量供异常使用
         global parm
         parm = self
@@ -32,9 +33,8 @@ class Port_8056(QThread):
         self.HOST = glo.get_value("ip")
         self.index = 0
         self.lost = 0
-        # self.data_len = 366
-        self.data_len = 462
-        self.data_len = 535
+        self.data_len = 366
+
         
 
     def __var__(self):
@@ -70,20 +70,33 @@ class Port_8056(QThread):
         dic['digital_ioInput'] = 'Q'
         # 数字量输出数据
         dic['digital_ioOutput'] = 'Q'
+        # 2.13.1新增
         # 碰撞报警状态
         dic['collision'] = 'B'
-        dic['machineFlangePose01'],dic['machineFlangePose02'],dic['machineFlangePose03'],dic['machineFlangePose04'],dic['machineFlangePose05'],dic['machineFlangePose06'] = 'd'*6
-        dic['machineUserFlangePose01'],dic['machineUserFlangePose02'],dic['machineUserFlangePose03'],dic['machineUserFlangePose04'],dic['machineUserFlangePose05'],dic['machineUserFlangePose06'] = 'd'*6
+        if self.data_len > 366 :
+            # 2.14.3新增
+            # 直角坐标系下法兰盘中心位姿
+            dic['machineFlangePose01'],dic['machineFlangePose02'],dic['machineFlangePose03'],dic['machineFlangePose04'],dic['machineFlangePose05'],dic['machineFlangePose06'] = 'd'*6
+            # 用户坐标系下法兰盘中心位姿
+            dic['machineUserFlangePose01'],dic['machineUserFlangePose02'],dic['machineUserFlangePose03'],dic['machineUserFlangePose04'],dic['machineUserFlangePose05'],dic['machineUserFlangePose06'] = 'd'*6
+        if self.data_len > 462 :
+            # 2.16.1新增
+            # 是否是急停状态
+            dic["emergencyStopState"] = "B"
+            # tcp运动速度
+            dic["tcpSpeed01"] = "d"
+            # 关节运动速度
+            dic["jointSpeed01"],dic["jointSpeed02"],dic["jointSpeed03"],dic["jointSpeed04"],dic["jointSpeed05"],dic["jointSpeed06"],dic["jointSpeed07"],dic["jointSpeed08"] = "d"*8
+
         return dic
 
     @merry._try
     def run(self):
+        logger.info("Port_8056 run")
         self.socket_client.connect((self.HOST,8056))
         
         while True:
             dic = self.__var__()
-            # logger.info("1")
-            # logger.info(dic)
             # print("index =", self.index)
             # 接收数据
             data = self.socket_client.recv(self.data_len)
@@ -125,9 +138,14 @@ class Port_8056(QThread):
             if self.index % 15 == 0:
                 # 发射信号
                 # self.print_info(dic)
+                recv_data_len = dic["MessageSize"][1][0]
                 print(dic["MessageSize"][1][0])
                 self.dic_8056.emit(dic)
-
+                if recv_data_len != self.data_len:
+                    print("flush  and start recv")
+                    time.sleep(0.5)
+                    self.data_len = recv_data_len
+                    self.socket_client = self.new_connect()
 
             self.index = self.index +1
             output = ""
@@ -141,6 +159,17 @@ class Port_8056(QThread):
         self.terminate()
         print("线程运行结束")
         print(self.isFinished())
+
+
+    def new_connect(self):
+        self.socket_client.close()
+        socket_client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        # 设置超时时间
+        socket_client.settimeout(8)
+        # 连接参数服务器，参数必须为元组格式
+        socket_client.connect((self.HOST,8056))
+        return socket_client
+        pass
 
     def print_info(self,dic):
         # 打 印 时 间 戳
@@ -190,11 +219,20 @@ class Port_8056(QThread):
         # 打 印 碰 撞 报 警 状 态
         print("碰撞报警状态")
         print(dic["collision"][1][0])
-        # 打 印 直 角 坐 标 系 下 的 法 兰 盘 中 心 位 姿
-        # print(dic['machineFlangePose01'][1][0] , dic['machineFlangePose02'][1][0] , dic['machineFlangePose03'][1][0] ,dic['machineFlangePose04'][1][0] , dic['machineFlangePose05'][1][0] , dic['machineFlangePose06'][1][0])
-        # 打 印 用 户 坐 标 系 下 的 法 兰 盘 中 心 位 姿
-        # print(dic['machineUserFlangePose01'][1][0] , dic['machineUserFlangePose02'][1][0] ,dic['machineUserFlangePose03'][1][0] , dic['machineUserFlangePose04'][1][0] ,dic['machineUserFlangePose05'][1][0] , dic['machineUserFlangePose06'][1][0])
+        if self.data_len > 366 :
+            # 打 印 直 角 坐 标 系 下 的 法 兰 盘 中 心 位 姿
+            print(dic['machineFlangePose01'][1][0] , dic['machineFlangePose02'][1][0] , dic['machineFlangePose03'][1][0] ,dic['machineFlangePose04'][1][0] , dic['machineFlangePose05'][1][0] , dic['machineFlangePose06'][1][0])
+            # 打 印 用 户 坐 标 系 下 的 法 兰 盘 中 心 位 姿
+            print(dic['machineUserFlangePose01'][1][0] , dic['machineUserFlangePose02'][1][0] ,dic['machineUserFlangePose03'][1][0] , dic['machineUserFlangePose04'][1][0] ,dic['machineUserFlangePose05'][1][0] , dic['machineUserFlangePose06'][1][0])
+        if self.data_len > 462 :
+            print("急停状态")
+            print(dic["emergencyStopState"][1][0])
+            print("tcp运动速度")
+            print(dic["tcpSpeed01"][1][0])
+            print("关节运动速度")
+            print(dic["jointSpeed01"][1][0],dic["jointSpeed02"][1][0],dic["jointSpeed03"][1][0],dic["jointSpeed04"][1][0],dic["jointSpeed05"][1][0],dic["jointSpeed06"][1][0])
         pass
+
 
     @merry._except(ConnectionRefusedError)
     def except_(e):
@@ -202,6 +240,25 @@ class Port_8056(QThread):
         logger.error("8056 ConnectionRefusedError")
         logger.error(e)
         parm.sign_except.emit("ConnectionRefusedError")
+        # parm.terminate()
+        pass
+    
+    @merry._except(ConnectionResetError)
+    def except_(e):
+        global parm
+        logger.error("8056 ConnectionResetError")
+        logger.error("远程主机强迫关闭了一个现有的连接")
+        logger.error(e)
+        parm.sign_except.emit("ConnectionResetError")
+        # parm.terminate()
+        pass
+    
+    @merry._except(socket.timeout)
+    def except_(e):
+        global parm
+        logger.error("8056 recv timeout")
+        logger.error(e)
+        parm.sign_except.emit("8056 recv timeout")
         # parm.terminate()
         pass
     

@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <Variable>
-	<VarP comment="" num="000"/>
-	<VarP comment="出料点-抓取" num="010"/>
-	<VarP comment="出料点-上方" num="011"/>
-	<VarP comment="出料点-后退" num="012"/>
-	<VarP comment="过渡点" num="020"/>
-	<VarP comment="料架-放料点" num="021"/>
-	<VarP comment="料架-放料点上" num="022"/>
-	<VarP comment="料架-放料点外" num="023"/>
-	<VarP comment="料架-放料后外" num="024"/>
-	<VarP comment="料架-基准点" num="030"/>
+    <VarP num="000" comment="">
+        <zh_CN></zh_CN>
+    </VarP>
+    <VarP num="011" comment="a2参考点">
+        <zh_CN>a2参考点</zh_CN>
+    </VarP>
+    <VarP num="013" comment="a1参考点">
+        <zh_CN>a1参考点</zh_CN>
+    </VarP>
+    <VarP num="018" comment="待机位">
+        <zh_CN>待机位</zh_CN>
+    </VarP>
 </Variable>

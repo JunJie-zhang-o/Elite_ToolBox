@@ -18,6 +18,7 @@ class PackageAngleDownload(QThread):
     
     def __init__(self,type) -> None:
         super().__init__()
+        logger.info("PackageAngleDownload init")
         self.type = type
         
         packing_63 ="""C00000=89.9995,-90.0000,0.0000,-89.9992,0.0004,0.0008,0.0000,0.0000
@@ -64,6 +65,7 @@ END
 
     @merry._try
     def run(self):
+        logger.info("PackageAngleDownload run")
         self.sign_pgbar.emit(0)
         self.sign_processing.emit(True)
         self.sign_pgbar.emit(10)

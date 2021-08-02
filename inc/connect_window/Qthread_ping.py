@@ -13,10 +13,12 @@ class NetWorkPing(QThread):
     
     def __init__(self):
         super().__init__()
+        logger.info("NetWorkPing init")
 
 
     # @logger.catch()
     def run(self):
+        logger.info("NetWorkPing run")
         ip = glo_value.get_value("ip")
         self.proc1 = subprocess.Popen("ping %s -t"%ip,stdout=subprocess.PIPE)
         logger.info("ping start")
