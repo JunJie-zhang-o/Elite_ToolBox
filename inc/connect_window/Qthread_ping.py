@@ -20,7 +20,10 @@ class NetWorkPing(QThread):
     def run(self):
         logger.info("NetWorkPing run")
         ip = glo_value.get_value("ip")
-        self.proc1 = subprocess.Popen("ping %s -t"%ip,stdout=subprocess.PIPE)
+
+
+        # *当使用subprocess.Popen时，如果打包时不包含cmd窗口，该子进程的输入和输出流异常导致报错，需要将对应的stdin、stdout、stderr进行重定向，同时shell=True可以防止自动弹出cmd黑色窗口
+        self.proc1 = subprocess.Popen("ping %s -t"%ip, shell=True ,stdin = subprocess.PIPE,stdout = subprocess.PIPE,stderr = subprocess.STDOUT)
         logger.info("ping start")
         logger.info(ip)
         while 1:

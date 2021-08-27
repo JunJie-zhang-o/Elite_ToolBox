@@ -64,10 +64,10 @@ class Log_8058(Ui_log_8058,QWidget):
     def except_msgbox(self,except_sign):
 
         if except_sign == "ConnectionRefusedError":
-            msg = "请检查网络连接或8056远程端口是否正常打开"
+            msg = "请检查网络连接及远程8058端口是否正常打开"
         if except_sign == "8058 recv timeout" or except_sign == "ConnectionResetError":
             msg = "请检查网络连接是否中断"
-        QMessageBox.warning(self,"监控失败",msg)
+        QMessageBox.warning(self,"获取失败",msg)
         
 
         

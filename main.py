@@ -39,7 +39,7 @@ class Window(FramelessWindow):
         # 设置标题
         self.setWindowTitle('ELite ToolBoxs')
         # 设置图标
-        self.setWindowIcon(QIcon("src\icon\ToolBox.ico"))
+        self.setWindowIcon(QIcon("src\icon\ToolBox1.ico"))
 
 
     def left_widgets_init(self):
