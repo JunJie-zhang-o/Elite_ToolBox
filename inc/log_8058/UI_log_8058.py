@@ -1,4 +1,5 @@
 
+from PyQt5.QtGui import QTextCursor
 from PyQt5.QtWidgets import QDialog, QFileDialog, QMessageBox, QWidget
 from inc.ui2py.log_8058 import Ui_log_8058
 from inc.log_8058.Qthread_log_8058 import Get_Log,Save_Log
@@ -48,7 +49,11 @@ class Log_8058(Ui_log_8058,QWidget):
     
     
     def slot_text(self,text):
-        self.textEdit_log.setText(text)
+        # self.textEdit_log.setText(text)
+        # 追加显示
+        self.textEdit_log.moveCursor(QTextCursor.End)
+        # self.textEdit_log.append(text)        #追加显示带换行
+        self.textEdit_log.insertPlainText(text)     #追加显示不换行
         
     
     def slot_enable(self,state):
