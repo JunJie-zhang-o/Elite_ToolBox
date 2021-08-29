@@ -8,6 +8,8 @@
 .vscode
 .qt_for_python
 
+/bin
+
 /build
 /dist
 /config
