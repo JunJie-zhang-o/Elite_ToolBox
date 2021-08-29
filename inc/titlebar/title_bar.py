@@ -2,6 +2,7 @@
 
 from ctypes import resize
 from os import times
+import subprocess
 from PyQt5.QtCore import Qt, QSize, pyqtSignal
 from PyQt5.QtGui import QCursor, QIcon, QPixmap, QResizeEvent
 from PyQt5.QtWidgets import QFrame, QLabel, QPushButton, QToolButton, QWidget
@@ -217,5 +218,7 @@ class TitleBar(QWidget):
         """窗口关闭时，如果有ping线程则停止ping线程（防止僵尸线程的出现）
         """
         if hasattr(self.connect_info_widget.ping,"proc1"):
-            self.connect_info_widget.ping.proc1.kill()
+            subprocess.Popen("TASKKILL /F /PID {pid} /T".format(pid=self.connect_info_widget.ping.proc1.pid),stdin = subprocess.PIPE,stdout = subprocess.PIPE,stderr = subprocess.STDOUT,shell=True)
+            time.sleep(0.1)
+            # self.connect_info_widget.ping.proc1.kill()
         logger.info("ToolBox Close")

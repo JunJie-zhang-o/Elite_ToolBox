@@ -40,11 +40,14 @@ class NetWorkPing(QThread):
 
 
     def stop(self):
-        self.proc1.kill()
+        # self.proc1.kill()
+        # self.proc1.terminate()
         glo_value.set_value("ip",None)
         glo_value.set_value("username",None)
         glo_value.set_value("password",None)
         self.ping_signal.emit(False)
         self.terminate()
+        
+        subprocess.Popen("TASKKILL /F /PID {pid} /T".format(pid=self.proc1.pid),stdin = subprocess.PIPE,stdout = subprocess.PIPE,stderr = subprocess.STDOUT,shell=True)
 
 

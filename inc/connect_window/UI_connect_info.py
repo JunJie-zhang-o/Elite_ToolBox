@@ -85,6 +85,7 @@ class connect_info(Ui_connect_param,QDialog):
     def connect_btn_defalt(self):
         """默认按钮的绑定
         """
+        logger.info("btn defalt clicked")
         self.lineEdit.setText("192.168.1.200")
         self.lineEdit_2.setText("root")
         self.lineEdit_3.setText("elite2014")
@@ -126,6 +127,7 @@ class connect_info(Ui_connect_param,QDialog):
         self.lineEdit.setText("")
         self.lineEdit_2.setText("")
         self.lineEdit_3.setText("")
+        logger.info("btn cancel clicked")
         
         
     def comboBox_init(self,mode=0):
@@ -149,8 +151,7 @@ class connect_info(Ui_connect_param,QDialog):
                         self.comboBox_history1.addItem(self.login_obj.ip[i])
                         self.comboBox_histroy2.addItem(self.login_obj.ip[i])
             
-        
-                
+            
     # @pyqtSlot()
     @logger.catch()
     def connect_comboBox_history(self,strr:str):
@@ -179,6 +180,8 @@ class connect_info(Ui_connect_param,QDialog):
     def connect_btn_connect(self):
         """连接按钮
         """
+        logger.info("btn connect clicked")
+        logger.info("btn connect ip:"+self.lineEdit.text())
         glo_value._init()
         glo_value.set_value("ip",self.lineEdit.text())
         glo_value.set_value("username",self.lineEdit_2.text())
@@ -214,6 +217,7 @@ class connect_info(Ui_connect_param,QDialog):
     def connect_dis_connect(self):
         """断开连接按钮
         """
+        logger.info("btn disconnect clicked")
         self.ping.stop()
         self.btn_enable_change(False)
         self.label_connect_state.setText("未连接")  
@@ -255,16 +259,20 @@ class connect_info(Ui_connect_param,QDialog):
     def slot_btn_save_setting(self,*args):
         """修改保存配置
         """
+        logger.info("btn alter save clicked")
         index_comboBox = self.comboBox_histroy2.currentIndex()
         ip_input = self.lineEdit_7.text()
         username_input = self.lineEdit_8.text()
         pass_input = self.lineEdit_9.text()
+        logger.info("btn alter ip:"+ip_input)
         
         self.login_obj.ip[index_comboBox-1] = ip_input
         self.login_obj.username[index_comboBox-1] = username_input
         self.login_obj.password[index_comboBox-1] = pass_input
         # 配置写入
         self.login_obj.write_json()
+        self.comboBox_histroy2.setItemText(index_comboBox,ip_input)
+        self.comboBox_history1.setItemText(index_comboBox,ip_input)
         QMessageBox.about(self,"参数修改","    修改成功        ")
         
         
@@ -272,6 +280,7 @@ class connect_info(Ui_connect_param,QDialog):
     def slot_btn_delete_setting(self,*args):
         """删除配置
         """
+        logger.info("btn delete clicked")
         index_comboBox = self.comboBox_histroy2.currentIndex()
         self.login_obj.ip.pop(index_comboBox-1)
         self.login_obj.username.pop(index_comboBox-1)
