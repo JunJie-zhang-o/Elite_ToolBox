@@ -1,3 +1,8 @@
+加载excel:
+  ☐ 加载时报错UI_XmlWidget.py", line 181, in slot_comment_show  line_edit_obj.setText(comment[1])TypeError: setText(self, str): argument 1 has unexpected type 'float
+  ☐ 记录设置按钮屏蔽掉
+
+
 重新打包程序:
   ✔ 打包最新的程序 @started(21-08-29 23:03) @done(21-08-29 23:21) @lasted(18m8s)
 

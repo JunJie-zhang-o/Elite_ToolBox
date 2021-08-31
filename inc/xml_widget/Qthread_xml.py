@@ -203,7 +203,6 @@ class LoadExcel(QThread):
                 if self.check_title(self.excel_obj.read_sheet_objects[i]):
 
                     comment_lists = self.excel_obj.read_all_coment(self.excel_obj.read_sheet_objects[i])
-                    
                     # 解释注释，以字典形式发送
                     for j in range(comment_lists[self.language].__len__()):
                         self.sign_comment_var.emit([self.get_key(i,j),comment_lists[self.language][j]])
@@ -214,7 +213,6 @@ class LoadExcel(QThread):
                     continue
         self.sign_loading.emit(False)
 
-            
             
     def check_excel_sheet_name(self):
         """检查sheet name是否正确
@@ -248,6 +246,7 @@ class LoadExcel(QThread):
     def get_key(self,i,j):
         var = ["B","I","D","P","V"]
         return var[i]+str(j)
+        
         
 class CreatExcel(QThread):
     

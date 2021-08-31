@@ -62,7 +62,16 @@ class Excel_read_write():
         """
         column_list=[[None]*255,[None]*255,[None]*255,[None]*255,[None]*255]
         for i in range(sheet.ncols-1):
-            column_list[i]=sheet.col_values(i+1,1,sheet.nrows)
+            # column_list[i] = sheet.col_values(i+1,1,sheet.nrows)      # 如果某些单元格内容为类似 1 / 2 后，会读出来float类型，1.0 / 2.0 
+            value = sheet.col_values(i+1,1,sheet.nrows)                 # 该方法读取返回一个列表
+            #* 用于解决读取数字偶尔为float类型的报错
+            for j in range(len(value)):
+                if type(value[j]) == float:
+                    value[j] = "%d"%value[j]    
+            #*
+            column_list[i] = value
+            # column_list[i] = sheet.col_values(i+1,1,sheet.nrows)      # 如果某些单元格内容为类似 1 / 2 后，会读出来float类型，1.0 / 2.0 
+            # print(column_list[i])
         return column_list
     
     
@@ -131,7 +140,7 @@ if __name__ =="__main__":
     """
     #读excel
     excel=Excel_read_write()
-    excel.creat_read_wbook("你好.xls")
+    excel.creat_read_wbook(r"‪1212.xls")
     print(excel.read_sheet_names)
     print(excel.read_sheet_numbers)
     print(excel.read_sheet_objects)
@@ -140,9 +149,7 @@ if __name__ =="__main__":
     print(excel.read_sheet_objects[0].nrows)    #获取sheet的行数
     print(excel.read_sheet_objects[0].ncols)    #获取sheet的列数
     
-    
-    
-        
+
     
 
     
